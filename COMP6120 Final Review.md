@@ -337,3 +337,35 @@ It can be used to find which code changes cause a bug, to minimize failure-induc
 
 ### Background: laws and open source
 - Copyright protects creative, intellectual and artistic works - including software
+- Alternative: public domain (nobody may claim exclusive property rights)
+- Trademark protects the name and logo of a product
+- OSS is generally copyrighted, with copyright retained by contributors or assigned to entity that maintains it.
+- Copyright holder can grant a license for use, placing restrictions on how it can be used.
+
+### Copyleft vs. Permissive
+- Copyleft protects the commons by having all linked code under same license, transitively requiring more sharing
+- Permissive licenses encourage adoption by permitting this practice
+
+### MIT License
+- Simple, commercial-friendly license
+- Must retain copyright credit
+- software is provided as is
+- Authors are not liable for software
+- No other restrictions
+
+### Apache License
+- Similar to MIT License
+- Not copyleft
+- Not required to distribute source code
+- Does not grant permission to use project's trademark
+- Does not require modifications to use the same license
+
+### BSD License
+- No liability and provided as is
+- Copyright statemnt must be included in source and binary
+- The copyright holder does not endorse any etensions without explicit written consent
+
+### Copyright vs. Intellectual Property (IP)
+- IP and Patents cover an idea for solving a problem
+- Copyrights cover particular expressions of some work
+- Exceptions for trivial works and ideas
