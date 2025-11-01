@@ -219,5 +219,121 @@ Give two version program with an attribute set A or B, let the user use and chec
 - Edge coverage
 - Path coverage
 
+## Architecture: Microservices
+
+- Monolithic architectures bundle all functionality together, while modular architectures divide systems into **independent** parts.
+- Types of modularity include plug-in architectures, service-oriented architectures and **microservices**.
+- **Microservices** bring benefits such as scalability and flexibility, but also introduce trade-offs like complexity and overhead.
+- Following the principles of microservices helps maximize their benefits and avoid common pitfalls.
 
 
+
+### Modularity
+Plug-in architecture --> Service-oriented architectures --> Distributed micro-services (Modularity increase)
+
+### Scaling
+- Vertical scaling: increase resources of one server
+- Horizonal scaling: increase the number of servers
+
+### Sam Newman's principles of Microserices
+- Domain Driven Modeling
+- Culture of Automation
+- Hide Implementation Details
+- Decentralized Governance
+- Deploy Independently
+- Consumer First
+- Isolate Failures
+
+### Microservice challenges
+- Too many choices
+- Delay between investment and payback
+- Complexities of distributed systems
+- Monitoring is more complex
+- More system states
+- More points of failure
+- Operational complexity
+- Frequently adopted by breaking down a monolithic application
+
+## Defect Reporting and Triage
+- A software defect report includes information and communications related to addressing a software issue
+- Defect reports have many **components**
+- Defect reports are ssubject to triage based on severity and priority information
+- Defect reports have a lifecycle that is complicated and non-linear with multiple possible resolutions.
+
+### Defect Report Lifecycle
+The defect report lifecycle consists of a number of possible stages and actions including: reporting, confirmation, triage, assignment, resolution, and verification.
+
+    - Not every defect report follows the same path.
+    - The overall process is **not linear**.
+
+The status of a defect report tracks its position in the lifecycle("new", "resolved", etc.)
+
+### Triage
+- Triage is the assignment of degrees of urgency to wounds or illnesses to decide the order of treatment of a large number of patients or casualties.
+- There are always more defects reports than resources available to address them.
+- Cost-benifit analysis
+    - How expensive is it to fix this bug?
+    - How expensive is it to not fix this bug?
+
+
+### Severity
+Severity is the degree of impact that a defect has on the development or operation of a component or system. In another word, **the cost of not fixing it**.
+
+### Priority
+Defect Priority indicates the importance or urgency of fixing a defect
+
+### Possible Resolutions
+Bugzilla resolution options:
+- Fixed
+- Invalid
+- Won't fix
+- Duplicate
+- Worksforme (cannot reproduce)
+- Moved
+- Not a bug
+- Not out bug
+- Insufficient data
+
+## Debugging as Hypothesis Testing
+Delta debugging is an automated debugging approach that finds a minimal interesting subset of a given set. It is very efficient.
+
+Delta debugging is based on divide-and-conquer and relies heavily on critical assumptions(monotonicity, unambiguity, and consistency).
+
+It can be used to find which code changes cause a bug, to minimize failure-inducing inputs, and even to find harmful thread schedules.
+
+### Delta Debugging (Interface)
+- Given
+    - A set C = ${c^1, ..., c^n}$ (of changes)
+    - A function Interesting: a (sub)set of changes --> Yes or No
+    - We know: Interesting(C) = Yes, Interesting({}) = No
+    - We require: Interesting is monotonic, unambiguous and consistent (more on these later)
+
+- The delta debugging algorithm returns a minimal "Interesting" subset M of C:
+    - Interesting(M) = Yes
+    - For all m in M, Interesting(M\\{m}) = No
+
+- Algorithm Candidate
+~~~
+    DD(${c_1, ..., c_n}$) = 
+        if n == 1 then return {$c_1$}
+        let P1 = {$c_1, ..., c_{n/2}$}
+        let P2 = {$c_{(n/2)+1}, ..., c_n$}
+        if Interesting(P1) == Yes
+            return DD(P1)
+        else return DD(P2)
+~~~
+
+### Useful Assumptions
+- Any subset of changes may be Interesting
+    -   not just singleton subsets of size 1
+- Interesting is Monotonic:
+    - Interesting(X) --> Interesting(X u {C})
+- Interesting is Unambiguous:
+    - Interesting(X) & Interesting(Y) --> Interesting(X and Y)
+- Interesting is Consistent:
+    - Interesting(X) = Yes or Interesting(X) = No (Sometimes = Unknown)
+
+## Open Source
+
+### Background: laws and open source
+- Copyright protects creative, intellectual and artistic works - including software
